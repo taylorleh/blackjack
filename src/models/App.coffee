@@ -3,9 +3,11 @@
 class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
+    @set 'chips', chips = new Chips()
 
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+
     @setEvents()
   
     
@@ -25,16 +27,22 @@ class window.App extends Backbone.Model
     @trigger('refresh')
 
 
-  setEvents: (deck)-> 
+  setEvents: ->
+    currentBet = 0
     @.attributes.playerHand.on('bust', => 
       @newGame(deck: deck))
 
     @.attributes.dealerHand.on('bust', => 
+      replenish = @get('deck').get('currentBet')
+      console.log replenish
       @newGame(deck: deck))
 
     @.attributes.dealerHand.on('finished', => 
       @findWinner()
       @newGame(deck: deck))
+
+    @attributes.chips.on 'spend',(amt) =>
+      
   
   findWinner: => 
     

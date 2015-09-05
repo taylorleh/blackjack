@@ -25,3 +25,18 @@ body {
   background-repeat: no-repeat;
   color: white;
 }
+
+.chips {
+  padding: 1em 0 1em 1em;
+  font-size: 16px;
+  color:red;
+}
+
+.chips .bet {
+  width: 50px;
+  padding: 5px 3px;
+  opacity: 0.25;
+  background-color:blue;
+  color:yellow;
+  font-size: 18px
+}

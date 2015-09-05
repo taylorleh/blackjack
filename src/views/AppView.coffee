@@ -1,6 +1,7 @@
 class window.AppView extends Backbone.View
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <div class="chips"></div> 
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -12,13 +13,12 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
-    # @model.get('playerHand').on('bust', @render, @)
-    # @model.get('dealerHand').on('bust finished', @render, @)
     @model.on('refresh', @render, @)
 
   render: ->
     @$el.children().detach()
     @$el.html @template()
+    @$('.chips').html new ChipsView(model: @model.get 'chips').el
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
 
