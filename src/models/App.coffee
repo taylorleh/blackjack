@@ -33,5 +33,26 @@ class window.App extends Backbone.Model
       @newGame(deck: deck))
 
     @.attributes.dealerHand.on('finished', => 
+      @findWinner()
       @newGame(deck: deck))
+  
+  findWinner: => 
     
+    playerScores = @get('playerHand').scores()
+    if playerScores[1] > 21
+      playerScore = playerScores[0]
+    else
+      playerScore = playerScores[1]
+  
+    dealerScores = @get('dealerHand').scores()
+    if dealerScores[1] >  21
+      dealerScore = dealerScores[0]
+    else
+      dealerScore = dealerScores[1]
+
+    if playerScore > dealerScore
+      alert "YOU WIN!!!"
+    else if dealerScore > playerScore
+      alert "You lost!"
+    else
+        alert "It's a tie"

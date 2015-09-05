@@ -13,11 +13,15 @@ class window.Hand extends Backbone.Collection
     @each (card) ->
       card.flip() if card.get('revealed') is false
 
-    while @scores()[0] < 17
+
+    while @scores()[1] < 17 and  @hasAce()
+        @hit()
+
+    while @scores()[0] < 17 and not @hasAce()
         @hit()
 
 
-    alert('Finished')
+    
     @trigger('finished')
     
 
@@ -38,7 +42,9 @@ class window.Hand extends Backbone.Collection
   bust: ->
     if @isDealer is true
       # alert "Dealer Bust"
+      console.log "Dealer Bust, you win!"
     else
       # alert "Player Bust"
+      console.log "You Busted, you lose!"
     
     @trigger('bust')
