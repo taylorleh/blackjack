@@ -15,7 +15,9 @@ class window.Hand extends Backbone.Collection
 
     while @scores()[0] < 17
         @hit()
-    
+
+
+    alert('Finished')
     @trigger('finished')
     
 
