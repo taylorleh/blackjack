@@ -37,8 +37,8 @@ class window.Hand extends Backbone.Collection
 
   bust: ->
     if @isDealer is true
-      alert "Dealer Bust"
+      # alert "Dealer Bust"
     else
-      alert "Player Bust"
+      # alert "Player Bust"
     
     @trigger('bust')

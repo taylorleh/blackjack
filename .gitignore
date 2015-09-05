@@ -37,3 +37,6 @@ compiled
 .floobit
 .floo
 .flooignore
+
+
+bower_components/*
